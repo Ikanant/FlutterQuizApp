@@ -15,9 +15,20 @@ class AnswerButton extends StatelessWidget {
         color: _answer ? Colors.greenAccent : Colors.redAccent,
         child: new InkWell(
           onTap: () => _onTap(),
-          child: new Center (child: new Container(
-            child: new Text(answerText),
-          ),)
+          child: new Center (
+            child: new Container(
+              decoration: new BoxDecoration(
+                border: new Border.all(
+                  color: Colors.white,
+                  width: 5.0
+                )
+              ),
+              padding: new EdgeInsets.all(20.0),
+              child: new Text(
+              answerText,
+              style: new TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+            ),
+          )
         )
       ),
     );
