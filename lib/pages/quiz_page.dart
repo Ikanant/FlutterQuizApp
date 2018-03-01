@@ -11,6 +11,27 @@ class QuizPage extends StatefulWidget {
 }
 
 class QuizPageState extends State<QuizPage> {
+  Question currentQuestion;
+  Quiz quiz = new Quiz([
+    new Question("This app is cool", true),
+    new Question("Pizza is healthy", false),
+    new Question("I am hungry", true)
+  ]);
+
+  String questionText;
+  int questionNumber;
+  bool isCorrect;
+
+  bool overlayShouldBeVisible = false;
+
+  @override
+  void initState(){
+    super.initState();
+    currentQuestion = quiz.nextQuestion;
+    questionText = currentQuestion.question;
+    questionNumber = quiz.questionNumber;
+  }
+  
   @override
   Widget build(BuildContext context){
     return new Stack( // Similar to a coulmn. A Stack will stack widgets on TOP of each other
@@ -18,13 +39,28 @@ class QuizPageState extends State<QuizPage> {
       children: <Widget>[
         new Column( // This is our main page
           children: <Widget>[
-            new AnswerButton(true, () => print("You answered true")),
-            new QuestionText("Apple", 1),
-            new AnswerButton(false,() => print("You answered false"))
+            new AnswerButton(true,  () => handleAnswer(true)),
+            new QuestionText(questionText, questionNumber),
+            new AnswerButton(false, () => handleAnswer(false))
           ],
         ),
-        new CorrectWrongOverlay(true)
+        overlayShouldBeVisible ? new CorrectWrongOverlay(isCorrect, () { 
+          currentQuestion = quiz.nextQuestion;
+          this.setState( () {
+            overlayShouldBeVisible = false;
+            questionText = currentQuestion.question;
+            questionNumber = quiz.questionNumber;
+          });
+         }) : new Container() // Empty container doesn't display anything
       ]
     );
+  }
+
+  void handleAnswer (bool answer) {
+    isCorrect = (currentQuestion.answer == answer);
+    quiz.answer(isCorrect);
+    this.setState((){ // We need to change the state in order to rebuild the widget
+      overlayShouldBeVisible = true;
+    });
   }
 }

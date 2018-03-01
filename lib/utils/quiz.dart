@@ -2,7 +2,7 @@ import './questions.dart';
 
 class Quiz {
   List<Question> _questions; // We can create PRIVATE variables by adding an _ in front of their names
-  int _currentQuestionIndex;
+  int _currentQuestionIndex = -1;
   int _score = 0;
 
   Quiz (this._questions) {
@@ -16,6 +16,7 @@ class Quiz {
   int get questionNumber => _currentQuestionIndex+1;
 
   Question get nextQuestion {
+    print(_currentQuestionIndex);
     _currentQuestionIndex++;
     if (_currentQuestionIndex >= _questions.length) return null;
     else {
