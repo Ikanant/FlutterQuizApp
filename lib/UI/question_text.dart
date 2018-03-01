@@ -20,7 +20,19 @@ class QuestioinTextState extends State<QuestionText> with SingleTickerProviderSt
     _fontSizeAnimationController = new AnimationController(duration: new Duration(milliseconds: 500), vsync: this);
     _fontSizeAnimation = new CurvedAnimation(parent: _fontSizeAnimationController, curve: Curves.bounceOut);
     _fontSizeAnimation.addListener(() => this.setState( () {} )); // setState takes in a function
-    _fontSizeAnimationController.forward();
+    
+    _fontSizeAnimationController.forward(); // Will only happen once when it starts
+  }
+
+  @override
+  void didUpdateWidget(QuestionText oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget._question != widget._question){
+      _fontSizeAnimationController.reset();
+      _fontSizeAnimationController.forward();
+    }
   }
 
   @override
