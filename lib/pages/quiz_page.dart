@@ -14,9 +14,16 @@ class QuizPage extends StatefulWidget {
 class QuizPageState extends State<QuizPage> {
   Question currentQuestion;
   Quiz quiz = new Quiz([
-    new Question("This app is cool", true),
-    new Question("Pizza is healthy", false),
-    new Question("I am hungry", true)
+    new Question("You must brush and floss your teeth after every meal to prevent gum disease and cavities.", false),
+    new Question("Brushing your teeth with an up-and-down or side-to-side motion is the best way to clean your teeth.", false),
+    new Question("You can floss your teeth by simply putting the floss between your teeth and pulling it through.", false),
+    new Question("Toothbrushes with angled heads and 2 levels of bristles are better than those with straight heads and 1 level of bristles.", true),
+    new Question("Motorized toothbrushes clean your teeth better than manual brushes.", false),
+    new Question("Brushing too much can harm your gums.", false),
+    new Question("You should use a dental rinse along with brushing and flossing to remove plaque.", false),
+    new Question("Toothpastes that contain baking soda and hydrogen peroxide can help reduce plaque acids made by plaque bacteria.", true),
+    new Question("You should see your dentist twice a year for checkups and cleanings.", true),
+    new Question("If your parents lost all their teeth to tooth decay or gum disease, you will too.", false),
   ]);
 
   String questionText;
