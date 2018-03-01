@@ -49,5 +49,11 @@ class QuestioinTextState extends State<QuestionText> with SingleTickerProviderSt
         ),
       )
     );
-  }   
+  }
+
+  @override
+  void dispose() {
+    _fontSizeAnimationController.dispose();
+    super.dispose();
+  }
 }

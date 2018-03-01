@@ -57,4 +57,10 @@ class CorrectWrongOverlayState extends State<CorrectWrongOverlay> with SingleTic
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _iconAnimationController.dispose();
+    super.dispose();
+  }
 }
